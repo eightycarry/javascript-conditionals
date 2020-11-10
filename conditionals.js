@@ -18,7 +18,7 @@ $(document).ready(function () {
         count++;
         // Print the current number of clicks to the
         // <p> with ID "clickCountOutput"
-        $("#clickCountOutput").text(count);asdfadsf
+        $("#clickCountOutput").text(count);
 
         // When the count gets to 10, reset it to 0
         if (count === 10) {
