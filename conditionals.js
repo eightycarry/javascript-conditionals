@@ -1,3 +1,6 @@
+var count = 0;
+
+
 $(document).ready(function () {
     // add the functions as event listeners
     // to the forms in the HTML
@@ -7,20 +10,23 @@ $(document).ready(function () {
     $("#catForm").submit(recommendFood);
     $("#cardForm").submit(drawCard);
 
-	function countClick(event) {
-	    event.preventDefault();
+    function countClick(event) {
+        event.preventDefault();
 
-		// Increment a variable that tracks the
-		// number of button clicks
+        // Increment a variable that tracks the
+        // number of button clicks
+        count++;
+        // Print the current number of clicks to the
+        // <p> with ID "clickCountOutput"
+        $("#clickCountOutput").text(count);
 
-		// Print the current number of clicks to the
-		// <p> with ID "clickCountOutput"
+        // When the count gets to 10, reset it to 0
+        if (count === 10) {
+            count = 0;
+        }
 
-		// When the count gets to 10, reset it to 0
 
-
-
-	}
+    }
 
 
     function checkAge(event) {
@@ -28,10 +34,15 @@ $(document).ready(function () {
 
         // Get the user's birth year from the text
         // box with ID of "birthYear"
-
+        var birthYear =$("#birthYear").val();
+        var age = 2020 - birthYear;
         // If they are currently under 18, print "Child"
         // to the <p> with ID of "birthYearOutput"
-
+        if (age < 18) {
+            $("#birthYearOutput").text("Child");
+        } else {
+            $("#birthYearOutput").text("Adult");
+        }
         // If they are 18 or over, print "Adult" instead
 
     }
@@ -41,14 +52,22 @@ $(document).ready(function () {
 
         // Get the purchase amount from the text
         // box with ID of "purchaseAmount"
-
+        var purchaseAmount = $("#purchaseAmount").val();
         // Get the state from the text box with ID "state"
+        var wi = .05;
+        var il = .08;
+        var mn = .075;
+        var mi = .055;
 
+        var state = $("#state").val();
         // Tax rates are: WI 5%, IL 8%, MN 7.5%, MI 5.5%
 
         // Calculate the sales tax amount and print to
         // the <p> with ID of "salesTaxOutput"
-
+        if (state === "wi") {
+            var salesTotal = (.05 * purchaseAmount) + purchaseAmount;
+            $("#salesTaxOutput").text(salesTotal);
+        }
         // If the user enters a state not listed above,
         // print "Error" instead
 
